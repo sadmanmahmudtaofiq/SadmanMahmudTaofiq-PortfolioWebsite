@@ -250,29 +250,34 @@ window.addEventListener("scroll", scrollActive);
 /* ======= CUSTOM CURSOR FINAL SCRIPT ======= */
 (function () {
   // Disable on mobile/touch devices
-  if (window.matchMedia('(max-width: 768px)').matches ||
-      (window.matchMedia('(pointer: coarse)').matches)) {
-    document.body.style.cursor = 'auto';
-    const existing = document.querySelector('.cc-cursor');
-    if (existing) existing.style.display = 'none';
+  if (
+    window.matchMedia("(max-width: 768px)").matches ||
+    window.matchMedia("(pointer: coarse)").matches
+  ) {
+    document.body.style.cursor = "auto";
+    const existing = document.querySelector(".cc-cursor");
+    if (existing) existing.style.display = "none";
     return;
   }
 
   // Ensure cursor element exists
-  let root = document.querySelector('.cc-cursor');
+  let root = document.querySelector(".cc-cursor");
   if (!root) {
-    root = document.createElement('div');
-    root.className = 'cc-cursor';
-    root.innerHTML = '<span class="cc-dot"></span><span class="cc-ring"></span>';
+    root = document.createElement("div");
+    root.className = "cc-cursor";
+    root.innerHTML =
+      '<span class="cc-dot"></span><span class="cc-ring"></span>';
     document.body.appendChild(root);
   }
-  const dot = root.querySelector('.cc-dot');
-  const ring = root.querySelector('.cc-ring');
+  const dot = root.querySelector(".cc-dot");
+  const ring = root.querySelector(".cc-ring");
 
   // Activate custom cursor after first mouse move
-  document.body.classList.add('cc-ready');
-  let x = window.innerWidth / 2, y = window.innerHeight / 2;
-  let tx = x, ty = y;
+  document.body.classList.add("cc-ready");
+  let x = window.innerWidth / 2,
+    y = window.innerHeight / 2;
+  let tx = x,
+    ty = y;
   const ease = 0.18;
 
   function raf() {
@@ -286,56 +291,71 @@ window.addEventListener("scroll", scrollActive);
   requestAnimationFrame(raf);
 
   // Move cursor
-  window.addEventListener('mousemove', (e) => {
-    tx = e.clientX; ty = e.clientY;
-    document.body.classList.remove('cc-hidden');
+  window.addEventListener("mousemove", (e) => {
+    tx = e.clientX;
+    ty = e.clientY;
+    document.body.classList.remove("cc-hidden");
   });
 
   // Hide on leave
-  ['mouseleave', 'blur'].forEach(ev =>
-    window.addEventListener(ev, () => document.body.classList.add('cc-hidden'))
+  ["mouseleave", "blur"].forEach((ev) =>
+    window.addEventListener(ev, () => document.body.classList.add("cc-hidden"))
   );
-  ['mouseenter', 'focus'].forEach(ev =>
-    window.addEventListener(ev, () => document.body.classList.remove('cc-hidden'))
+  ["mouseenter", "focus"].forEach((ev) =>
+    window.addEventListener(ev, () =>
+      document.body.classList.remove("cc-hidden")
+    )
   );
 
   // Hide custom cursor & show system one on hover over links/buttons
   const interactiveSel =
     'a[href], button, [role="button"], input[type="button"], input[type="submit"], .btn, .link, .nav__link';
-  document.addEventListener('mouseover', (e) => {
+  document.addEventListener("mouseover", (e) => {
     if (e.target.closest(interactiveSel)) {
-      document.body.classList.add('cc-over-link');
-      document.body.classList.remove('cc-hover');
+      document.body.classList.add("cc-over-link");
+      document.body.classList.remove("cc-hover");
     }
   });
-  document.addEventListener('mouseout', (e) => {
+  document.addEventListener("mouseout", (e) => {
     if (e.target.closest(interactiveSel)) {
-      document.body.classList.remove('cc-over-link');
+      document.body.classList.remove("cc-over-link");
     }
   });
 
   // Click animation
-  document.addEventListener('mousedown', () => document.body.classList.add('cc-click'));
-  document.addEventListener('mouseup', () => document.body.classList.remove('cc-click'));
+  document.addEventListener("mousedown", () =>
+    document.body.classList.add("cc-click")
+  );
+  document.addEventListener("mouseup", () =>
+    document.body.classList.remove("cc-click")
+  );
 })();
-
-
 
 /*=============== SCROLL REVEAL ANIMATION ===============*/
 const sr = ScrollReveal({
   origin: "top",
-  distance: "60px",  
+  distance: "60px",
   duration: 2000,
   delay: 300,
   // reset: true,
 });
 
-sr.reveal(`.home__image, .projects__container, .work__container, .testimonials__container, .contact__container`);
+sr.reveal(
+  `.home__image, .projects__container, .work__container, .testimonials__container, .contact__container`
+);
 sr.reveal(`.home__data`, { delay: 900, origin: "bottom" });
 sr.reveal(`.home__info`, { delay: 1200, origin: "bottom" });
 sr.reveal(`.home__social, .home__cv`, { delay: 1500 });
 sr.reveal(`.about__data`, { origin: "left" });
 sr.reveal(`.about__image`, { origin: "right" });
 sr.reveal(`.services__card`, { interval: 100 });
+
+console.log(
+  "%cSadman Mahmud Taofiq",
+  "background-color: #3498db; color: white; font-size: 20px; padding: 5px 10px; border-radius: 1px;"
+);
+
+console.log(`Website 1: https://taofiq.vercel.app/`);
+console.log(`Website 2: https://sadmanmahmud.vercel.app/`);
 
 
